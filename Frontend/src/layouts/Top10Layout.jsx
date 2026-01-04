@@ -13,36 +13,53 @@ const Top10Layout = () => {
   };
 
   return (
-    <div className="mx-2 mt-14">
-      <div className="infor flex mb-2 justify-between">
-        <Heading className="ml-0">Top 10</Heading>
-        <div className="buttons flex bg-lightbg rounded-md">
+    <div className="w-full">
+      {/* Header with tabs - removed margins and made compact */}
+      <div className="flex items-center justify-between mb-4">
+        <Heading className="text-lg font-bold text-white">Top 10</Heading>
+        
+        {/* Compact tab buttons */}
+        <div className="flex bg-gray-800/70 rounded-md p-1">
           {tabs.map((tab) => (
             <button
               key={tab.name}
               onClick={() => handleTabChange(tab.name)}
-              className={`${
+              className={`px-3 py-1 text-xs rounded-md transition-colors ${
                 selectedTab === tab.name
-                  ? "bg-primary  text-black"
-                  : "hover:text-primary"
-              } px-4 py-1.5 rounded-md `}
+                  ? "bg-gray-700 text-white font-medium"
+                  : "text-gray-400 hover:text-white hover:bg-gray-800"
+              }`}
             >
-              {tab.name}
+              {tab.name.charAt(0).toUpperCase() + tab.name.slice(1)}
             </button>
           ))}
         </div>
       </div>
-      <div className="box bg-lightbg px-2 sm:px-4 py-2">
+      
+      {/* Compact content box */}
+      <div className="bg-gray-900/50 rounded-lg border border-gray-800 p-3">
         {topTen?.[selectedTab]?.map((item) => (
-          <div key={item.id} className="flex items-center gap-2 sm:gap-5">
-            <h1
-              className={`rank text-base sm:text-2xl font-extrabold ${
-                item.rank <= 3 ? " border-primary border-b-2" : ""
-              }`}
-            >
-              {item.rank < 10 ? `0${item.rank}` : item.rank}
-            </h1>
-            <MiniPoster item={item} />
+          <div 
+            key={item.id} 
+            className="flex items-center gap-3 p-2 rounded-md hover:bg-gray-800/30 transition-colors mb-2 last:mb-0"
+          >
+            {/* Rank indicator - compact */}
+            <div className="flex-shrink-0">
+              <div className={`
+                w-8 h-8 flex items-center justify-center rounded-md text-sm font-bold
+                ${item.rank <= 3 
+                  ? "bg-gradient-to-br from-blue-600 to-blue-800 text-white" 
+                  : "bg-gray-800 text-gray-300"
+                }
+              `}>
+                {item.rank < 10 ? `0${item.rank}` : item.rank}
+              </div>
+            </div>
+            
+            {/* Anime content */}
+            <div className="flex-1 min-w-0">
+              <MiniPoster item={item} compact={true} />
+            </div>
           </div>
         ))}
       </div>
