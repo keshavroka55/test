@@ -1,14 +1,3 @@
-
-// TO do:
-//listing the top 10 anime  of week day month in top section  
-
-
-
-
-
-
-
-
 import React, { useState } from "react";
 import useTopTenStore from "../store/toptenStore";
 import MiniPoster from "../components/MiniPoster";
