@@ -16,8 +16,8 @@ jobs:
       - name: Copy files to server
         uses: appleboy/scp-action@v0.1.2
         with:
-          host: ${{ secrets.139.59.40.60 }}
-          username: ${{ secrets.root }}
+          host: ${{ secrets.DROPLET_IP }}
+          username: ${{ secrets.DROPLET_USER }}
           key: ${{ secrets.DROPLET_SSH_KEY }}
           source: "."
           target: "/home/youruser/myapp"
